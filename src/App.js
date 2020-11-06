@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import RandomizeButton from "./components/RandomizeButton";
 import "./App.css";
+import Dropdown from "./components/Dropdown";
 
 function App() {
   const [randomCocktail, setRandomCocktail] = useState({});
@@ -8,6 +9,7 @@ function App() {
   return (
     <div className="App">
       <RandomizeButton setRandomCocktail={setRandomCocktail} />
+      <Dropdown />
     </div>
   );
 }
