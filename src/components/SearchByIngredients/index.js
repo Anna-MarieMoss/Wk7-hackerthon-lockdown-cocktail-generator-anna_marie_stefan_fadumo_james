@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
+import ResultsCard from "../ResultsCard";
 
 function SearchByIngredients() {
   const [ingredients, setIngredients] = useState([]);
   const [selectedIngredient, setSelectedIngredient] = useState("");
 
   const [click, setClick] = useState(false);
-  const [fetchedCocktails, setfetchedCocktails] = useState("");
+  const [fetchedCocktails, setfetchedCocktails] = useState([]);
 
   useEffect(() => {
     fetch("https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list")
@@ -29,12 +30,13 @@ function SearchByIngredients() {
       <select
         name="ingredients"
         id="ingredientsSelector"
+        defaultValue=""
         onChange={(e) => {
           setSelectedIngredient(e.target.value);
         }}
       >
         {" "}
-        <option value="" selected></option>
+        <option value=""></option>
         {ingredients.map((obj, i) => {
           return (
             <option key={i} value={obj.strIngredient1}>
@@ -50,6 +52,19 @@ function SearchByIngredients() {
       >
         🔎 Search {selectedIngredient.toLowerCase()} cocktails
       </button>
+
+      <section className="resultsSection">
+        {fetchedCocktails.map((obj) => {
+          return (
+            <ResultsCard
+              key={obj.idDrink}
+              idDrink={obj.idDrink}
+              drinkTitle={obj.strDrink}
+              drinkImage={obj.strDrinkThumb}
+            />
+          );
+        })}
+      </section>
     </div>
   );
 }
