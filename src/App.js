@@ -1,15 +1,20 @@
 import React, { useState } from "react";
 import RandomizeButton from "./components/RandomizeButton";
 import "./App.css";
-import Dropdown from "./components/Dropdown";
+import SearchByIngredients from "./components/SearchByIngredients";
 
 function App() {
   const [randomCocktail, setRandomCocktail] = useState({});
 
   return (
     <div className="App">
-      <RandomizeButton setRandomCocktail={setRandomCocktail} />
-      <Dropdown />
+      <section className="getRandomCocktail">
+        <RandomizeButton setRandomCocktail={setRandomCocktail} />
+      </section>
+
+      <section className="getCocktailsByIngredient">
+        <SearchByIngredients />
+      </section>
     </div>
   );
 }
