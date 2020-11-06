@@ -47,11 +47,17 @@ body {
 }
 
 ul {
-  max-width: 100%;
+  max-width: 425px;
 }
 
 li {
   list-style-type: none;
   max-width: 400px;
   align-content: center;
+}
+
+img {
+  border-style: solid;
+  border-radius: 20px;
+  border-color: rgb(230, 37, 133);
 }
