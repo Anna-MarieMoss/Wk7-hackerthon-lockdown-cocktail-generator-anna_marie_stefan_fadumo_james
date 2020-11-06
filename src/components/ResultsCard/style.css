@@ -1,0 +1,22 @@
+.resultsCard {
+  box-shadow: 0px 5px 13px rgba(0, 0, 0, 0.2);
+  border-radius: 20px !important;
+  display: inline-block;
+  margin: 6px;
+  padding: 12px;
+  transition: 0.3s ease;
+}
+
+img {
+  max-width: 200px;
+  border-radius: 20px !important;
+}
+
+h3 {
+  font-family: sans-serif;
+}
+
+.resultsCard:hover {
+  transition: 0.3s ease;
+  transform: scale(1.05);
+}
