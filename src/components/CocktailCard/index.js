@@ -11,6 +11,22 @@ import "../../App.css";
 
 function CocktailCard({ randomCocktail }) {
      console.log(randomCocktail)
+     console.log(Object.entries(randomCocktail.drinks[0]))
+
+    // const  ingredientsArray = [];
+
+    // function mapIngredients() {
+    //     for( let i = 1; i < 16; i++) {
+    //         let newObject = {randomCocktail.drinks[0].strMeasure[i] : randomCocktail.drinks[0].strIngredient[i]}
+    //         ingredientsArray.push()
+    // }
+    let newArr = Object.entries(randomCocktail.drinks[0]);
+    let ingredients = newArr.filter(item => item[0].match(/strIngredient\d/) && item[1] !== null);
+    let measures = newArr.filter(item => item[0].match(/strMeasure\d/) && item[1] !== null)
+    console.log(ingredients);
+    console.log(measures);
+
+
      return (
          <div>
             <ul>
@@ -20,16 +36,12 @@ function CocktailCard({ randomCocktail }) {
                 <li>({randomCocktail.drinks[0].strAlcoholic})</li>
                 <br></br>
                 <li><b>Ingredients:</b></li>
-                <li>{randomCocktail.drinks[0].strMeasure1} - {randomCocktail.drinks[0].strIngredient1}</li>
-                <li>{randomCocktail.drinks[0].strMeasure2} - {randomCocktail.drinks[0].strIngredient2}</li>
-                {/* <li>{randomCocktail.drinks[0].strMeasure3} - {randomCocktail.drinks[0].strIngredient3}</li>
-                <li>{randomCocktail.drinks[0].strMeasure4} - {randomCocktail.drinks[0].strIngredient4}</li>
-                <li>{randomCocktail.drinks[0].strMeasure5} - {randomCocktail.drinks[0].strIngredient5}</li>
-                <li>{randomCocktail.drinks[0].strMeasure6} - {randomCocktail.drinks[0].strIngredient6}</li>
-                <li>{randomCocktail.drinks[0].strMeasure7} - {randomCocktail.drinks[0].strIngredient7}</li>
-                <li>{randomCocktail.drinks[0].strMeasure8} - {randomCocktail.drinks[0].strIngredient8}</li>
-                <li>{randomCocktail.drinks[0].strMeasure9} - {randomCocktail.drinks[0].strIngredient9}</li>
-                <li>{randomCocktail.drinks[0].strMeasure10} - {randomCocktail.drinks[0].strIngredient10}</li> */}
+
+                {ingredients.map((ingredient, index) => {
+                    return measures[index] ? <li>{measures[index][1] } - {ingredient[1]} </li> : <li> {ingredient[1]} </li>
+                    
+                })}
+
                 <br></br>
                 
                 <li><b>Instructions: </b>{randomCocktail.drinks[0].strInstructions}</li>
