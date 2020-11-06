@@ -16,6 +16,7 @@ function RandomizeButton(props) {
   }, [click]);
 
   return <button onClick={() => setClick(!click)}>Get random cocktail!</button>;
+  
 }
 
 export default RandomizeButton;
