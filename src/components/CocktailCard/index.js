@@ -1,59 +1,55 @@
-// set up the card component to take in an object.
-//create a cocktail card that returns..
-// cocktail name as a h1
-// image of drink
-// alcoholic or not
-// ingredients and measures
-// how to make
-
-import {useState } from 'react';
-import "../../App.css";
+import "../../App.sass";
 
 function CocktailCard({ randomCocktail }) {
-     console.log(randomCocktail)
-     console.log(Object.entries(randomCocktail.drinks[0]))
+  let newArr = Object.entries(randomCocktail.drinks[0]);
+  let ingredients = newArr.filter(
+    (item) => item[0].match(/strIngredient\d/) && item[1] !== null
+  );
+  let measures = newArr.filter(
+    (item) => item[0].match(/strMeasure\d/) && item[1] !== null
+  );
 
-    // const  ingredientsArray = [];
+  return (
+    <div>
+      <ul>
+        <li>
+          <h1>{randomCocktail.drinks[0].strDrink}</h1>
+        </li>
+        <li>
+          <img
+            src={randomCocktail.drinks[0].strDrinkThumb}
+            alt="cocktail"
+            width="200px"
+          />
+        </li>
+        <li>({randomCocktail.drinks[0].strAlcoholic})</li>
+        <br></br>
+        <li>
+          <b>Ingredients:</b>
+        </li>
 
-    // function mapIngredients() {
-    //     for( let i = 1; i < 16; i++) {
-    //         let newObject = {randomCocktail.drinks[0].strMeasure[i] : randomCocktail.drinks[0].strIngredient[i]}
-    //         ingredientsArray.push()
-    // }
-    let newArr = Object.entries(randomCocktail.drinks[0]);
-    let ingredients = newArr.filter(item => item[0].match(/strIngredient\d/) && item[1] !== null);
-    let measures = newArr.filter(item => item[0].match(/strMeasure\d/) && item[1] !== null)
-    console.log(ingredients);
-    console.log(measures);
+        {ingredients.map((ingredient, index) => {
+          return measures[index] ? (
+            <li>
+              {measures[index][1]} - {ingredient[1]}{" "}
+            </li>
+          ) : (
+            <li> {ingredient[1]} </li>
+          );
+        })}
 
+        <br></br>
 
-     return (
-         <div>
-            <ul>
-                <li><h1>{randomCocktail.drinks[0].strDrink}</h1></li>
-                <li><img src={randomCocktail.drinks[0].strDrinkThumb} alt="cocktail" width=
-            "200px" /></li>
-                <li>({randomCocktail.drinks[0].strAlcoholic})</li>
-                <br></br>
-                <li><b>Ingredients:</b></li>
+        <li>
+          <b>Instructions: </b>
+          {randomCocktail.drinks[0].strInstructions}
+        </li>
+      </ul>
+    </div>
+  );
+}
 
-                {ingredients.map((ingredient, index) => {
-                    return measures[index] ? <li>{measures[index][1] } - {ingredient[1]} </li> : <li> {ingredient[1]} </li>
-                    
-                })}
-
-                <br></br>
-                
-                <li><b>Instructions: </b>{randomCocktail.drinks[0].strInstructions}</li>
-            </ul>
-          
-         </div>
-     )
-    }
-
-export default CocktailCard
-
-
+export default CocktailCard;
 
 // // {
 // //     "drinks": [

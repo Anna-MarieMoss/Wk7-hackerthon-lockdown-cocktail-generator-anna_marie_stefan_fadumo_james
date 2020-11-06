@@ -1,29 +1,52 @@
+//// React, React Router
 import React, { useState } from "react";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+
+//// Elements
 import RandomizeButton from "./components/RandomizeButton";
 import CocktailCard from "./components/CocktailCard";
-import "./App.css";
 import SearchByIngredients from "./components/SearchByIngredients";
+//// CSS
+import "./App.sass";
 
 function App() {
   const [randomCocktail, setRandomCocktail] = useState({
-    "drinks": [{}]
+    drinks: [{}],
   });
-  const [cocktailCard, setCocktailCard] = useState({})
+  const [cocktailCard, setCocktailCard] = useState({});
 
   return (
     <div className="App">
-      <br></br>
-      <ul>
-        <li><h1>LOCKDOWN COCKTAILS!</h1></li>
+      <h1>LOCKDOWN COCKTAILS!</h1>
 
-        <li><RandomizeButton setRandomCocktail={setRandomCocktail} /></li>
-      </ul>
+      <Router>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/search">Search</Link>
+            </li>
+          </ul>
+        </nav>
 
-      <CocktailCard randomCocktail={randomCocktail}/>
-      
-      <section className="getCocktailsByIngredient">
-        <SearchByIngredients />
-      </section>
+        <Switch>
+          <Route path="/search">
+            <section className="getCocktailsByIngredient">
+              <SearchByIngredients />
+            </section>
+          </Route>
+          <Route path="/">
+            <RandomizeButton
+              setRandomCocktail={setRandomCocktail}
+              cocktailName={randomCocktail.drinks[0].strDrink}
+              className="button is-primary"
+            />
+            <CocktailCard randomCocktail={randomCocktail} />
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 }
