@@ -48,7 +48,7 @@ function SearchByIngredients() {
           setClick(!click);
         }}
       >
-        Search {selectedIngredient.toLowerCase()} cocktails
+        🔎 Search {selectedIngredient.toLowerCase()} cocktails
       </button>
     </div>
   );
