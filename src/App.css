@@ -36,3 +36,7 @@
     transform: rotate(360deg);
   }
 }
+
+body {
+  background-image: url(https://i.pinimg.com/originals/16/15/8f/16158f24fc89086a9232df1f3d5eb8ef.jpg);
+}
