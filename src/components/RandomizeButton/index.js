@@ -9,8 +9,10 @@ function RandomizeButton(props) {
     // fetch goes here if
     fetch("https://www.thecocktaildb.com/api/json/v1/1/random.php")
       .then((response) => response.json())
-      .then((data) => console.log(data.drinks[0]))
-      .then((data) => setRandomCocktail(data));
+      .then((data) => {
+        console.log(data.drinks[0]);
+        setRandomCocktail(data);
+      });
   }, [click]);
 
   return <button onClick={() => setClick(!click)}>Get random cocktail!</button>;
